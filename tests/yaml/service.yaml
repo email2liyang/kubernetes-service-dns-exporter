@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world
+  namespace: test
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8000
+    targetPort: 8000
+    nodePort: 30800
+    protocol: TCP
+  selector:
+    app: hello-world
