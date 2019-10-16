@@ -22,7 +22,7 @@ def route53(aws_credentials):
 
 def test_route53(route53):
     assert os.getenv('domain_name') == 'test.com'
-    resp = route53.create_hosted_zone(Name=os.getenv('domain_name'), CallerReference='xxx')
+    resp = route53.create_hosted_zone(Name=os.getenv('domain_name'), CallerReference=str(hash('xxx')))
     zone_id = resp['HostedZone']['Id']
     os.environ['hosted_zone_id'] = zone_id
     dns_name, record = route53_dns('CREATE', 'test_service', '127.0.0.2')
